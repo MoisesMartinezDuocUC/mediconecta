@@ -47,7 +47,7 @@ La aplicación está optimizada para todos los dispositivos:
 ### Instalación
 1. Clona el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/mediconecta.git
+git clone https://github.com/MoisesMartinezDuocUC/mediconecta.git
 cd mediconecta
 ```
 
