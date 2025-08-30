@@ -1,0 +1,58 @@
+:root {
+    /* Colores principales del tema */
+    --color-primary:        #0477BF;   /* Azul principal */
+    --color-secondary:      #048ABF;   /* Azul complementario */
+    --color-dark:           #3B5459;   /* Gris azulado oscuro */
+    --color-medium:         #6C7A89;   /* Gris medio */
+    --color-light:          #F2F2F2;   /* Gris claro */
+    --color-white:          #FFFFFF;   /* Color blanco predeterminado */
+    --color-text:           #E0E6FF;   /* Texto sobre fondos oscuros */
+    --color-text-muted:     #A0A8B8;   /* Texto secundario */
+    --color-accent:         #41BF78;   /* Verde de acento */
+
+    /* Bordes y sombras */
+    --border-radius:        15px;
+    --border-radius-sm:     8px;
+    --border-radius-lg:     20px;
+
+    --shadow-sm:            0 4px 12px rgba(0, 0, 0, 0.25);
+    --shadow-md:            0 8px 25px rgba(0, 0, 0, 0.3);
+    --shadow-lg:            0 12px 35px rgba(0, 0, 0, 0.4);
+    --shadow-primary:       0 6px 20px rgba(4, 119, 191, 0.35); /* Azul principal suave */
+
+    /* Transiciones */
+    --transition-fast:      0.2s ease-in-out;
+    --transition-normal:    0.3s ease-in-out;
+    --transition-slow:      0.5s ease-in-out;
+
+    /* Gradientes adaptados a la paleta */
+    --gradient-primary:     linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    --gradient-secondary:   linear-gradient(45deg, var(--color-accent), var(--color-secondary));
+    --gradient-dark:        linear-gradient(135deg, var(--color-dark) 0%, var(--color-medium) 50%, var(--color-light) 100%);
+
+    /* Espaciado */
+    --spacing-xs:           0.5rem;
+    --spacing-sm:           1rem;
+    --spacing-md:           1.5rem;
+    --spacing-lg:           2rem;
+    --spacing-xl:           3rem;
+
+    /* Tipografía */
+    --font-family:          'Arial', sans-serif;
+    --font-size-xs:         0.75rem;
+    --font-size-sm:         0.875rem;
+    --font-size-base:       1rem;
+    --font-size-lg:         1.25rem;
+    --font-size-xl:         1.5rem;
+    --font-size-xxl:        2rem;
+
+    /* Z-index */
+    --z-dropdown:           1000;
+    --z-sticky:             1020;
+    --z-fixed:              1030;
+    --z-modal-backdrop:     1040;
+    --z-modal:              1050;
+    --z-popover:            1060;
+    --z-tooltip:            1070;
+}
+

@@ -1,0 +1,520 @@
+/* Importar variables personalizadas */
+@import url('variables.css');
+
+/* Estilos base personalizados */
+body {
+    font-family: var(--font-family);
+    background: var(--color-primary);
+    color: var(--color-white);
+    min-height: 90vh;
+}
+
+/* Personalización del navbar */
+.navbar {
+    background: rgba(4, 119, 191, 0.85) !important;
+    backdrop-filter: blur(15px);
+    border-bottom: 2px solid var(--color-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    padding: 0.5rem 2rem;
+    transition: all 0.3s ease;
+}
+/* Logo */
+.navbar-brand img {
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand img:hover {
+    transform: scale(1.05);
+}
+
+/* Links del navbar */
+.navbar-nav .nav-link {
+    color: var(--color-white) !important;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.5rem 1rem !important;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Hover: cambio de color subrayado y animado */
+.navbar-nav .nav-link:after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 0;
+    background: var();
+    transition: width 0.3s;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+.navbar-nav .nav-link:hover {
+    color: #41BF78 !important;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+
+/* Personalización del dropdown de servicios */
+.dropdown-menu {
+    background: var(--color-primary) !important;
+    border: none !important;
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-primary);
+    padding: var(--spacing-sm);
+    min-width: 220px;
+    margin-top: 0.5rem;
+}
+
+.dropdown-item {
+    background: var(--color-primary);
+    color: var(--color-white) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: var(--border-radius-sm);
+    padding: var(--spacing-sm) var(--spacing-lg) !important;
+    margin: 0.2rem 0;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.dropdown-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.3) 100%);
+    transform: skewX(-25deg);
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background: var(--gradient-secondary) !important;
+    color: var(--color-white) !important;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.dropdown-item:hover::before {
+    left: 125%;
+    transition: all 0.7s ease-in-out;
+}
+
+/* Animación fade-in para el banner */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.3s; /* Retraso opcional para escalonar animaciones */
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-delay-1 { animation-delay: 0.2s; }
+.fade-in-delay-2 { animation-delay: 0.5s; }
+.fade-in-delay-3 { animation-delay: 0.8s; }
+
+
+/* Botones principales */
+.btn-primary {
+    background: var(--gradient-primary) !important;
+    border: none !important;
+    border-radius: var(--border-radius-sm) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: var(--spacing-sm) var(--spacing-lg) !important;
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-primary);
+    color: #fff !important; 
+    position: relative;
+    overflow: hidden; /* para animación de hover */
+}
+
+/* Efecto hover */
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    background: var(--gradient-secondary) !important;
+}
+
+/* Pequeño efecto de brillo en hover */
+.btn-primary::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-25deg);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover::after {
+    left: 125%;
+}
+
+/* Personalización de cards */
+.card {
+    background: rgba(15, 20, 25, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--border-radius) !important;
+    backdrop-filter: blur(5px);
+    transition: all var(--transition-normal);
+    box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: var(--shadow-md);
+}
+
+.card-title {
+    color: var(--color-white) !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.card-text {
+    color: var(--color-white) !important;
+    line-height: 1.6;
+}
+
+.text-muted {
+    color: var(--color-white) !important;
+    opacity: 0.9;
+}
+
+.lead {
+    color: var(--color-white) !important;
+}
+
+p {
+    color: var(--color-white) !important;
+}
+
+/* Personalización de badges/tags */
+.badge {
+    background: rgba(4, 119, 191, 0.85) !important;
+    color: var(--color-white) !important;
+    border: 1px solid rgba(218, 54, 255, 0.3);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+/* Personalización del footer */
+.footer a {
+    position: relative;
+    display: inline-block;
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+.footer a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(4, 138, 191, 0) 0%,
+        rgba(4, 138, 191, 0.4) 50%,
+        rgba(4, 138, 191, 0) 100%
+    );
+    transform: skewX(-20deg);
+    transition: none;
+}
+
+.footer a:hover::after {
+    animation: shine 1s forwards;
+}
+
+@keyframes shine {
+    0% { left: -75%; }
+    100% { left: 125%; }
+}
+
+.footer a:hover {
+    color: var(--color-secondary);
+    background: rgba(4, 138, 191, 0.1);
+}
+
+
+/* Personalización de formularios */
+.form-control {
+    background: rgba(15, 20, 25, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: var(--color-white) !important;
+    border-radius: var(--border-radius-sm);
+}
+
+.form-control:focus {
+    background: rgba(15, 20, 25, 0.8) !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(218, 54, 255, 0.25) !important;
+}
+
+.form-control::placeholder {
+    color: var(--color-text-muted);
+}
+
+/* Mejorar visibilidad del texto en modales y formularios */
+.modal-title {
+    color: var(--color-white) !important;
+}
+
+.form-label {
+    color: var(--color-white) !important;
+    font-weight: 600;
+}
+
+.modal-body {
+    color: var(--color-white) !important;
+}
+
+.modal-footer {
+    color: var(--color-white) !important;
+}
+
+/* Personalización de modales */
+.modal-content {
+    background: var(--color-dark) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Utilidades personalizadas */
+.bg-custom-dark {
+    background: var(--color-dark) !important;
+}
+
+.bg-custom-medium {
+    background: var(--color-medium) !important;
+}
+
+.text-custom-primary {
+    color: var(--color-primary) !important;
+}
+
+.text-custom-secondary {
+    color: var(--color-secondary) !important;
+}
+
+.border-custom-primary {
+    border-color: var(--color-primary) !important;
+}
+
+.box {
+    background-color: #2b0344; 
+    border-radius: 12px;
+}
+
+
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Responsive personalizado */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .card {
+        margin-bottom: var(--spacing-md);
+    }
+
+    /* En móviles, mostrar todas las categorías en el navbar */
+    .dropdown-menu {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        margin-top: 0;
+    }
+
+    .dropdown-item {
+        padding: var(--spacing-xs) var(--spacing-sm) !important;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .dropdown-item:hover {
+        transform: none;
+        background: rgba(218, 54, 255, 0.05) !important;
+    }
+}
+
+/* En dispositivos medianos y grandes, mantener el dropdown */
+@media (min-width: 769px) {
+    .dropdown-menu {
+        animation: fadeInDown 0.3s ease-out;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Estilos para las tarjetas de categorías */
+.services-card {
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.services-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.services-card .card-img-top {
+    transition: transform var(--transition-normal);
+}
+
+.services-card:hover .card-img-top {
+    transform: scale(1.05);
+}
+
+.services-overlay {
+    transition: background var(--transition-normal);
+}
+
+.services-card:hover .services-overlay {
+    background: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Animación de entrada para las tarjetas */
+.services-card {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.services-card:nth-child(1) { animation-delay: 0.1s; }
+.services-card:nth-child(2) { animation-delay: 0.2s; }
+.services-card:nth-child(3) { animation-delay: 0.3s; }
+.services-card:nth-child(4) { animation-delay: 0.4s; }
+.services-card:nth-child(5) { animation-delay: 0.5s; }
+.services-card:nth-child(6) { animation-delay: 0.6s; }
+
+
+/* Banner de servicios */
+.services-banner {
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-medium) 50%, var(--color-light) 100%);
+    padding: 4rem 0;
+    position: relative;
+}
+
+.services-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+    radial-gradient(circle at 20% 80%, rgba(218, 54, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.services-banner .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Flecha de scroll en el banner principal */
+.scroll-arrow {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-white);
+    font-size: 2rem;
+    cursor: pointer;
+    animation: bounce 2s infinite;
+    z-index: 10;
+    transition: all var(--transition-normal);
+}
+
+.scroll-arrow:hover {
+    color: var(--color-primary);
+    transform: translateX(-50%) scale(1.2);
+}
+
+/* Animación de rebote para la flecha */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* Ajuste para el banner principal */
+.banner {
+    position: relative;
+}
+
+.banner .scroll-arrow {
+    bottom: 40px;
+}
