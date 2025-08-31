@@ -30,7 +30,7 @@ const campos = {
     },
     contrasena: {
         required: true,
-        regex: /^(?=.*[A-Z])(?=.*[0-9])[A-Za-zÁÉÍÓÚáéíóúÑñ0-9]{12,24}$/,
+        regex: /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9ÁÉÍÓÚáéíóúÑñ])[A-Za-zÁÉÍÓÚáéíóúÑñ0-9^$*.{}?!"%&/()=¿¡#@,:;_-]{12,24}$/,
         error: {
             required: "La contraseña es obligatoria.",
             length: "La contraseña debe tener una longitud de entre 12 y 24 caracteres.",
@@ -164,8 +164,19 @@ form.addEventListener("submit", function (event) {
     }
 
     if (valido) {
-        form.submit();
+        const alerta = document.createElement("div");
+        alerta.className = "alerta-flotante";
+        alerta.textContent = "Registrado con éxito.";
+    
+        document.body.appendChild(alerta);
+    
+        setTimeout(() => {
+            alerta.remove();
+        }, 10000);
+    
+        form.reset();
     }
+
 });
 
 // Validación en tiempo real
