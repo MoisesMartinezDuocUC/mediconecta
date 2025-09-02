@@ -11,13 +11,16 @@ const campos = {
             format: "Solo se permiten letras, espacios, eñes y tildes."
         }
     },
-    nombreUsuario: {
+    genero: {
         required: true,
-        regex: /^[A-Za-z0-9_]{3,50}$/,
         error: {
-            required: "El nombre de usuario es obligatorio.",
-            length: "El nombre debe tener entre 3 y 50 caracteres.",
-            format: "No se permiten caracteres especiales, espacios, comas ni puntos."
+            required: "Debe seleccionar un género."
+        }
+    },
+    prevision: {
+        required: true,
+        error: {
+            required: "La previsión médica es obligatoria."
         }
     },
     email: {
@@ -59,6 +62,7 @@ const campos = {
     }
 };
 
+// Funciones de mostrar y limpiar errores
 function mostrarError(id, mensaje) {
     const input = document.getElementById(id);
     input.classList.add("is-invalid");
@@ -76,7 +80,6 @@ form.addEventListener("submit", function (event) {
     event.preventDefault();
     let valido = true;
 
-    // Limpiar errores previos
     Object.keys(campos).forEach(campo => limpiarError(campo));
 
     // Validación nombre
@@ -92,16 +95,17 @@ form.addEventListener("submit", function (event) {
         valido = false;
     }
 
-    // Validación nombre de usuario
-    const nombreUsuario = form.nombreUsuario.value.trim();
-    if (campos.nombreUsuario.required && !nombreUsuario) {
-        mostrarError("nombreUsuario", campos.nombreUsuario.error.required);
+    // Validación género
+    const genero = form.genero.value.trim();
+    if (!genero) {
+        mostrarError("genero", campos.genero.error.required);
         valido = false;
-    } else if (nombreUsuario.length < 3 || nombreUsuario.length > 50) {
-        mostrarError("nombreUsuario", campos.nombreUsuario.error.length);
-        valido = false;
-    } else if (!campos.nombreUsuario.regex.test(nombreUsuario)) {
-        mostrarError("nombreUsuario", campos.nombreUsuario.error.format);
+    }
+
+    // Validación previsión
+    const prevision = form.prevision.value.trim();
+    if (!prevision) {
+        mostrarError("prevision", campos.prevision.error.required);
         valido = false;
     }
 
@@ -128,7 +132,7 @@ form.addEventListener("submit", function (event) {
         valido = false;
     }
 
-    // Validación confirmación contraseña
+    // Confirmar contraseña
     const confirmarContrasena = form.confirmarContrasena.value.trim();
     if (campos.confirmarContrasena.required && !confirmarContrasena) {
         mostrarError("confirmarContrasena", campos.confirmarContrasena.error.required);
@@ -138,50 +142,110 @@ form.addEventListener("submit", function (event) {
         valido = false;
     }
 
-    // Validación fecha de nacimiento
+    // Validación fecha nacimiento
     const fechaNacimiento = form.fechaNacimiento.value.trim();
-    if (campos.fechaNacimiento.required && !fechaNacimiento) {
+    if (!fechaNacimiento) {
         mostrarError("fechaNacimiento", campos.fechaNacimiento.error.required);
         valido = false;
     } else {
-    const [anio, mes, dia] = fechaNacimiento.split('-').map(Number);
-    const fechaIngresada = new Date(anio, mes - 1, dia); 
-    const hoy = new Date();
-    hoy.setHours(0, 0, 0, 0); 
-
-    if (fechaIngresada > hoy) {
-        mostrarError("fechaNacimiento", "La fecha no puede ser futura.");
-        valido = false;
+        const [anio, mes, dia] = fechaNacimiento.split('-').map(Number);
+        const fechaIngresada = new Date(anio, mes - 1, dia);
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+        if (fechaIngresada > hoy) {
+            mostrarError("fechaNacimiento", "La fecha no puede ser futura.");
+            valido = false;
+        }
     }
-}
 
-
-    // Validación direccion (opcional)
+    // Validación dirección opcional
     const direccion = form.direccion.value.trim();
     if (direccion && !campos.direccion.regex.test(direccion)) {
         mostrarError("direccion", campos.direccion.error.format);
         valido = false;
     }
 
+    // Validación afecciones médicas
+    document.querySelectorAll(".afeccion-checkbox").forEach(checkbox => {
+        const detalleInput = document.getElementById("detalle-" + checkbox.value);
+        if (checkbox.checked && !detalleInput.value.trim()) {
+            mostrarError(detalleInput.id, "Debe especificar la " + checkbox.value + ".");
+            valido = false;
+        }
+    });
+
     if (valido) {
         const alerta = document.createElement("div");
         alerta.className = "alerta-flotante";
         alerta.textContent = "Registrado con éxito.";
-    
+
         document.body.appendChild(alerta);
-    
+
         setTimeout(() => {
             alerta.remove();
         }, 10000);
-    
-        form.reset();
-    }
 
+        form.reset();
+
+        // Ocultar inputs de detalle y quitar asteriscos
+        document.querySelectorAll('.afeccion-checkbox').forEach(checkbox => {
+            const detalleInput = document.getElementById('detalle-' + checkbox.value);
+            const label = document.querySelector('label[for="detalle-' + checkbox.value + '"]');
+            detalleInput.classList.add('d-none');
+            label.textContent = label.textContent.replace(' *', '');
+        });
+    }
 });
 
 // Validación en tiempo real
 Object.keys(campos).forEach(campo => {
-    document.getElementById(campo).addEventListener("input", function () {
+    document.getElementById(campo)?.addEventListener("input", function () {
         limpiarError(campo);
     });
 });
+
+document.querySelectorAll('.afeccion-checkbox').forEach(checkbox => {
+    const detalleInput = document.getElementById('detalle-' + checkbox.value);
+
+    // Crear label dinámicamente si no existe
+    let label = document.querySelector('label[for="detalle-' + checkbox.value + '"]');
+    if (!label) {
+        label = document.createElement('label');
+        label.setAttribute('for', 'detalle-' + checkbox.value);
+        label.className = 'form-label';
+        label.textContent = '';
+        detalleInput.parentNode.insertBefore(label, detalleInput);
+    }
+
+    // Evento para mostrar/ocultar input y asterisco dinámicamente
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            // Mostrar input
+            detalleInput.classList.remove('d-none');
+            detalleInput.focus();
+
+            // Crear span para asterisco si no existe
+            if (!label.querySelector('.asterisco')) {
+                const asterisco = document.createElement('span');
+                asterisco.textContent = ' *';
+                asterisco.style.color = 'red';
+                asterisco.classList.add('asterisco');
+                label.appendChild(asterisco);
+            }
+        } else {
+            // Ocultar input y limpiar valor
+            detalleInput.classList.add('d-none');
+            detalleInput.value = '';
+
+            // Remover asterisco si existe
+            const asterisco = label.querySelector('.asterisco');
+            if (asterisco) asterisco.remove();
+
+            limpiarError(detalleInput.id);
+        }
+    });
+
+    // Validación en tiempo real de los inputs de detalle
+    detalleInput.addEventListener('input', () => limpiarError(detalleInput.id));
+});
+
