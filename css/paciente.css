@@ -11,17 +11,14 @@ body {
     background: rgba(4, 119, 191, 0.85) !important;
     backdrop-filter: blur(15px);
     border-bottom: 2px solid var(--color-primary);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    padding: 0.15rem 2rem;
-    height: 70px !important;
-    min-height: 70px !important;
-    max-height: 70px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    padding: 0.5rem 2rem;
     transition: all 0.3s ease;
 }
 /* Logo */
 .navbar-brand img {
-    width: 100px;
-    height: 105px;
+    width: 80px;
+    height: 80px;
     transition: transform 0.3s ease;
 }
 
@@ -269,22 +266,6 @@ body {
     .navbar-nav {
         text-align: center;
     }
-    
-    /* Ajuste de navbar para móviles */
-    .navbar {
-        height: auto !important;
-        min-height: 70px !important;
-        max-height: none !important;
-        padding-bottom: 0.5rem !important;
-    }
-    
-    .navbar.show-menu {
-        padding-bottom: 1rem !important;
-    }
-    
-    .navbar-collapse {
-        margin-top: 0.5rem;
-    }
 
     .card {
         margin-bottom: var(--spacing-md);
@@ -354,58 +335,3 @@ body {
         }
     }
 }
-
-/* Afecciones médicas */
-#afecciones-container .form-check {
-    position: relative;
-    padding: 10px 40px;
-    margin-bottom: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-#afecciones-container .form-check:hover {
-    background: rgba(65, 191, 120, 0.2);
-}
-
-/* Checkbox personalizado */
-.afeccion-checkbox {
-    width: 18px;
-    height: 18px;
-    margin-right: 20px;
-    accent-color: #41BF78;
-    cursor: pointer;
-}
-
-/* Labels */
-#afecciones-container .form-check-label {
-    font-weight: 500;
-    color: var(--color-white);
-    cursor: pointer;
-}
-
-/* Inputs de detalle */
-#afecciones-container .form-control {
-    margin-top: 8px;
-    transition: all 0.3s ease;
-    border-radius: 6px;
-}
-
-/* Mostrar input cuando el checkbox está activo */
-#afecciones-container .form-control:focus {
-    border-color: #41BF78;
-    box-shadow: 0 0 6px rgba(65, 191, 120, 0.5);
-}
-
-/* Responsive para móviles */
-@media (max-width: 768px) {
-    #afecciones-container .form-check {
-        padding: 8px 10px;
-    }
-
-    #afecciones-container .form-control {
-        margin-top: 6px;
-    }
-}
-

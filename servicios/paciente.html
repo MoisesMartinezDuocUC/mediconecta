@@ -1,2 +1,274 @@
 <!DOCTYPE html>
 <html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mediconecta - Perfil de Paciente</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/paciente.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/logo/mediconecta-logo.png">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/index.html">
+                    <img src="/assets/logo/mediconecta-logo.png" alt="Mediconecta Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Servicios en línea
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu">
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user-injured me-2"></i>Paciente</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-user-md me-2"></i>Profesional de la salud</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="navbar-nav ms-auto d-flex align-items-center gap-2">
+                        <a href="/login.html" class="btn btn-primary btn-sm"><i class="fas fa-user me-1"></i>Iniciar sesión</a>
+                        <a href="/registro.html" class="btn btn-primary btn-sm"><i class="fas fa-user-plus me-1"></i>Registrarse</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="container mt-5 pt-5">
+
+        <h1 class="perfil-title text-center mb-5 mt-5">Hola, Juan Pérez</h1>
+
+        <!-- Botones para alternar secciones -->
+        <div class="d-flex justify-content-center mb-5 gap-3">
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#editarPerfil" aria-expanded="true" aria-controls="editarPerfil">
+                <i class="fas fa-user-edit me-2"></i>Editar Perfil
+            </button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#reservasHistorial" aria-expanded="false" aria-controls="reservasHistorial">
+                <i class="fas fa-calendar-check me-2"></i>Reservas / Historial
+            </button>
+        </div>
+
+        <!-- Sección Editar Perfil -->
+        <div class="collapse show" id="editarPerfil">
+            <div class="box shadow p-4 rounded mb-4">
+                <h2 class="perfil-subtitle mb-3">Editar Perfil</h2>
+                <form action="#" method="post" novalidate>
+                    <!-- Campos del formulario (Nombre, Género, Fecha de nacimiento, Previsión médica, Domicilio, Afecciones médicas, Correo, Contraseña) -->
+                    <!-- Nombre -->
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre: <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required autocomplete="off">
+                    </div>
+
+                    <!-- Género -->
+                    <div class="mb-3">
+                        <label for="genero" class="form-label">Género: <span style="color: red;">*</span></label>
+                        <select class="form-select" id="genero" name="genero" required>
+                            <option value="">Seleccione...</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                        </select>
+                    </div>
+
+                    <!-- Fecha de nacimiento -->
+                    <div class="mb-3">
+                        <label for="fechaNacimiento" class="form-label">Fecha de nacimiento: <span style="color: red;">*</span></label>
+                        <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required autocomplete="off">
+                    </div>
+
+                    <!-- Previsión médica -->
+                    <div class="mb-3">
+                        <label for="prevision" class="form-label">Previsión médica: <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="prevision" name="prevision" required autocomplete="off">
+                    </div>
+
+                    <!-- Domicilio -->
+                    <div class="mb-3">
+                        <label for="direccion" class="form-label">Domicilio:</label>
+                        <input type="text" class="form-control" id="direccion" name="direccion" autocomplete="off">
+                    </div>
+
+                    <!-- Afecciones médicas -->
+                    <div class="mb-3">
+                        <label class="form-label">Afecciones médicas:</label>
+                        <div id="afecciones-container">
+                            <div class="form-check">
+                                <input class="form-check-input afeccion-checkbox" type="checkbox" value="enfermedad" id="afeccion-enfermedad">
+                                <label class="form-check-label" for="afeccion-enfermedad">Enfermedad</label>
+                                <input type="text" class="form-control mt-2 d-none" id="detalle-enfermedad" placeholder="Especifique la enfermedad">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input afeccion-checkbox" type="checkbox" value="discapacidad" id="afeccion-discapacidad">
+                                <label class="form-check-label" for="afeccion-discapacidad">Discapacidad</label>
+                                <input type="text" class="form-control mt-2 d-none" id="detalle-discapacidad" placeholder="Especifique la discapacidad">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input afeccion-checkbox" type="checkbox" value="alergia" id="afeccion-alergia">
+                                <label class="form-check-label" for="afeccion-alergia">Alergia</label>
+                                <input type="text" class="form-control mt-2 d-none" id="detalle-alergia" placeholder="Especifique la alergia">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input afeccion-checkbox" type="checkbox" value="otra" id="afeccion-otra">
+                                <label class="form-check-label" for="afeccion-otra">Otra</label>
+                                <input type="text" class="form-control mt-2 d-none" id="detalle-otra" placeholder="Especifique otra afección">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Correo electrónico -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico: <span style="color: red;">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" required autocomplete="off">
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div class="mb-3">
+                        <label for="contrasena" class="form-label">Contraseña: <span style="color: red;">*</span></label>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" required autocomplete="off">
+                    </div>
+
+                    <!-- Confirmar contraseña -->
+                    <div class="mb-3">
+                        <label for="confirmarContrasena" class="form-label">Confirme la contraseña: <span style="color: red;">*</span></label>
+                        <input type="password" class="form-control" id="confirmarContrasena" name="confirmarContrasena" required autocomplete="off">
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="d-flex justify-content-center gap-5 mt-4">
+                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sección Reservas / Historial -->
+        <div class="collapse" id="reservasHistorial">
+            <div class="box shadow p-4 rounded mb-4">
+                <h2 class="perfil-subtitle mb-3">Reservas y Consultas Médicas</h2>
+                <p>Puedes reservar, modificar o eliminar tus horas y visualizar tu historial de atenciones.</p>
+                <!-- Tabla de reservas -->
+                <div class="table-responsive mt-3">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                                <th>Especialista</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01/09/2025</td>
+                                <td>10:00</td>
+                                <td>Dr. Martínez</td>
+                                <td>Confirmada</td>
+                                <td>
+                                    <button class="btn btn-sm btn-success"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Formulario de nueva reserva -->
+                <form class="mt-4" action="#" method="post">
+                    <h5>Solicitar nueva reserva</h5>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="fecha" class="form-label">Fecha</label>
+                            <input type="date" id="fecha" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="hora" class="form-label">Hora</label>
+                            <input type="time" id="hora" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="especialista" class="form-label">Especialista</label>
+                            <select id="especialista" class="form-select" required>
+                                <option value="">Seleccionar</option>
+                                <option>Dr. Martínez</option>
+                                <option>Dra. Pérez</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-calendar-plus me-2"></i>Reservar hora</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Banner al final -->
+        <div class="banner mb-4">
+            <img src="/assets/images/wallpaper.png" class="img-fluid w-100 rounded" alt="Banner Mediconecta">
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white pt-4 pb-3 mt-5">
+        <div class="container">
+            <div class="row align-items-center mb-2">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <img src="/assets/logo/mediconecta-logo.png" alt="Mediconecta Logo" class="img-fluid" style="width: 100px;">
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="/contacto.html" class="btn btn-outline-light btn-sm"><i class="fas fa-headset me-2"></i>Contacto y Soporte</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2025 Mediconecta system. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mostrar/ocultar detalle de afecciones
+        document.querySelectorAll('.afeccion-checkbox').forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                const detalle = document.getElementById('detalle-' + this.value);
+                detalle.classList.toggle('d-none', !this.checked);
+            });
+        });
+
+        // Alternancia automática de secciones
+        const collapseElements = document.querySelectorAll('.collapse');
+        collapseElements.forEach(el => {
+            el.addEventListener('show.bs.collapse', function () {
+                collapseElements.forEach(other => {
+                    if (other !== el) {
+                        bootstrap.Collapse.getInstance(other)?.hide();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
