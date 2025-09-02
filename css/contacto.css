@@ -156,10 +156,23 @@ body {
     .category-banner {
         text-align: center;
         color: var(--color-white);
-        margin-bottom: 4rem; 
+        margin-bottom: 4rem;
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .category-banner img {
+        object-position: center 30%;
+        filter: brightness(0.6);
     }
 
     /* Sección de Contacto */
+    .contact-section {
+        padding-top: 0;
+        padding-bottom: 3rem;
+    }
+    
     .contact-section .card {
         border: 0;
         box-shadow: 0 4px 20px rgba(0,0,0,0.25);
@@ -297,6 +310,22 @@ body {
 @media (max-width: 768px) {
     .navbar-nav {
         text-align: center;
+    }
+    
+    /* Ajuste de navbar para móviles */
+    .navbar {
+        height: auto !important;
+        min-height: 70px !important;
+        max-height: none !important;
+        padding-bottom: 0.5rem !important;
+    }
+    
+    .navbar.show-menu {
+        padding-bottom: 1rem !important;
+    }
+    
+    .navbar-collapse {
+        margin-top: 0.5rem;
     }
 
     .card {

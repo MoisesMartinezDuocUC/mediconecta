@@ -269,6 +269,22 @@ body {
     .navbar-nav {
         text-align: center;
     }
+    
+    /* Ajuste de navbar para móviles */
+    .navbar {
+        height: auto !important;
+        min-height: 70px !important;
+        max-height: none !important;
+        padding-bottom: 0.5rem !important;
+    }
+    
+    .navbar.show-menu {
+        padding-bottom: 1rem !important;
+    }
+    
+    .navbar-collapse {
+        margin-top: 0.5rem;
+    }
 
     .card {
         margin-bottom: var(--spacing-md);

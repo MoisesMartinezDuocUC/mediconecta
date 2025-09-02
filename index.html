@@ -230,6 +230,22 @@
                 }
             }
         });
+        
+        // Ajuste de altura del navbar en móviles
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbar = document.querySelector('.navbar');
+            
+            navbarToggler.addEventListener('click', function() {
+                setTimeout(() => {
+                    if (navbar.querySelector('.navbar-collapse').classList.contains('show')) {
+                        navbar.classList.add('show-menu');
+                    } else {
+                        navbar.classList.remove('show-menu');
+                    }
+                }, 100);
+            });
+        });
         </script>
         
 </body>
