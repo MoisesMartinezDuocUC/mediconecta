@@ -38,8 +38,8 @@
                                 Servicios en línea
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenu">
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-user-injured me-2"></i>Paciente</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-user-md me-2"></i>Profesional de la salud</a></li>
+                                <li><a class="dropdown-item" href="/servicios/paciente.html"><i class="fas fa-user-injured me-2"></i>Paciente</a></li>
+                                <li><a class="dropdown-item" href="/servicios/medico.html"><i class="fas fa-user-md me-2"></i>Profesional de la salud</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -68,7 +68,7 @@
         </div>
 
         <!-- Sección Editar Perfil -->
-        <div class="collapse show" id="editarPerfil">
+        <div class="collapse" id="editarPerfil">
             <div class="box shadow p-4 rounded mb-4">
                 <h2 class="perfil-subtitle mb-3">Editar Perfil</h2>
                 <form action="#" method="post" novalidate>
@@ -162,7 +162,7 @@
         </div>
 
         <!-- Sección Reservas / Historial -->
-        <div class="collapse" id="reservasHistorial">
+        <div class="collapse show" id="reservasHistorial">
             <div class="box shadow p-4 rounded mb-4">
                 <h2 class="perfil-subtitle mb-3">Reservas y Consultas Médicas</h2>
                 <p>Puedes reservar, modificar o eliminar tus horas y visualizar tu historial de atenciones.</p>
@@ -221,11 +221,6 @@
             </div>
         </div>
 
-        <!-- Banner al final -->
-        <div class="banner mb-4">
-            <img src="/assets/images/wallpaper.png" class="img-fluid w-100 rounded" alt="Banner Mediconecta">
-        </div>
-
     </main>
 
     <!-- Footer -->
@@ -249,26 +244,6 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Mostrar/ocultar detalle de afecciones
-        document.querySelectorAll('.afeccion-checkbox').forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                const detalle = document.getElementById('detalle-' + this.value);
-                detalle.classList.toggle('d-none', !this.checked);
-            });
-        });
-
-        // Alternancia automática de secciones
-        const collapseElements = document.querySelectorAll('.collapse');
-        collapseElements.forEach(el => {
-            el.addEventListener('show.bs.collapse', function () {
-                collapseElements.forEach(other => {
-                    if (other !== el) {
-                        bootstrap.Collapse.getInstance(other)?.hide();
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="/js/paciente.js"></script>
 </body>
 </html>

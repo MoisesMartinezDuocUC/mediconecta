@@ -1,9 +1,34 @@
 /* Estilos base personalizados */
 body {
-    font-family: var(--font-family);
-    background: var(--color-primary);
-    color: var(--color-white);
-    min-height: 90vh;
+    position: relative; /* necesario para el pseudo-elemento */
+    min-height: 100vh;
+    margin: 0;
+    background-image: url('/assets/images/wallpaper.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: 0; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Overlay con gradiente */
+body::before {
+    content: "";
+    position: fixed; /* cubre todo el viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg, 
+        rgba(4, 119, 191, 0.85) 0%, 
+        rgba(65, 191, 120, 0.6) 50%, 
+        rgba(242, 242, 242, 0.8) 100%
+    );
+    z-index: -1; /* se coloca detrás del contenido */
+    pointer-events: none; /* permite interactuar con todo normalmente */
 }
 
 /* Personalización del navbar */
@@ -15,6 +40,7 @@ body {
     padding: 0.5rem 2rem;
     transition: all 0.3s ease;
 }
+
 /* Logo */
 .navbar-brand img {
     width: 80px;
@@ -49,7 +75,6 @@ body {
     left: 0;
 }
 
-
 .navbar-nav .nav-link:hover {
     color: #41BF78 !important;
 }
@@ -57,7 +82,6 @@ body {
 .navbar-nav .nav-link:hover::after {
     width: 100%;
 }
-
 
 /* Personalización del dropdown de servicios */
 .dropdown-menu {
@@ -120,9 +144,9 @@ body {
     padding: var(--spacing-sm) var(--spacing-lg) !important;
     transition: all var(--transition-normal);
     box-shadow: var(--shadow-primary);
-    color: #fff !important; 
+    color: #fff !important;
     position: relative;
-    overflow: hidden; /* para animación de hover */
+    overflow: hidden;
 }
 
 /* Efecto hover */
@@ -204,7 +228,6 @@ body {
     background: rgba(4, 138, 191, 0.1);
 }
 
-
 /* Personalización de formularios */
 .form-control {
     background: #fff !important;
@@ -218,50 +241,60 @@ body {
 }
 
 .form-label {
-    color: #000 !important; 
-}
-
-
-.modal-title {
-    color: var(--color-white) !important;
-}
-
-.form-label {
     color: var(--color-white) !important;
     font-weight: 600;
 }
 
+/* Modal */
+.modal-title {
+    color: var(--color-white) !important;
+}
+
+/* Box principal */
 .box {
     margin-top: 50px;
-    background-color: rgba(17, 17, 17, 0.7); 
+    background-color: rgba(17, 17, 17, 0.85); /* oscuro semi-transparente */
     border-radius: 12px;
-    color: var(--color-dark);
-    line-height: 2; 
+    color: var(--color-white);
+    line-height: 1.8;
+    padding: 3rem; /* más espacio interno */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
-.box h1 {
-    font-size: 3rem;
-    font-weight: 400;
-    color: var(--color-white) !important;
-    line-height: 1;
-    margin: 0 0 10px 0; 
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.3px; 
-    text-align: left;
+/* Títulos del perfil */
+.perfil-title {
+    font-size: 2.8rem;
+    font-weight: 500;
+    margin-bottom: 1rem; /* más espacio debajo del título */
+    color: var(--color-white);
 }
 
-.box h2 {
+.perfil-subtitle {
     font-size: 1.3rem;
     font-weight: 400;
-    color: var(--color-white) !important;
-    line-height: 1;
-    margin: 0 0 8px 0;
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: 0.3px;
-    text-align: left;
+    margin-bottom: 2rem;
+    color: var(--color-secondary);
 }
 
-/* Responsive personalizado */
+/* Espacio superior para el main */
+main.container {
+    padding-top: 6rem; /* separación desde el navbar */
+}
+
+/* Botones de alternancia */
+.d-flex.justify-content-center.mb-4.gap-3 {
+    margin-top: 2rem; /* más separación desde el título */
+}
+
+/* Link de cambiar contraseña */
+.forgot-password {
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .navbar-nav {
         text-align: center;
@@ -289,8 +322,17 @@ body {
         transform: none;
         background: rgb(255, 255, 255) !important;
     }
+
+    .box {
+        padding: 1.5rem;
+    }
 }
 
+main {
+    flex: 1;
+}
+
+/* Alerta flotante */
 .alerta-flotante {
     position: fixed;
     top: 35%;

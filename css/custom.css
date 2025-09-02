@@ -15,13 +15,22 @@ body {
     backdrop-filter: blur(15px);
     border-bottom: 2px solid var(--color-primary);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    padding: 0.5rem 2rem;
+    padding: 0.15rem 2rem;
+    height: 70px !important;
+    min-height: 70px !important;
+    max-height: 70px !important;
     transition: all 0.3s ease;
+}
+
+/* Ajuste del contenido principal para navbar compacto */
+#main-content {
+    margin-top: 1rem !important;
+    padding-top: 2rem !important;
 }
 /* Logo */
 .navbar-brand img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 105px;
     transition: transform 0.3s ease;
 }
 
@@ -172,6 +181,22 @@ body {
     left: 125%;
 }
 
+/* Contenedor de tarjetas en fila con Flexbox */
+.cards-flexbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.card-flex {
+    flex: 1;
+    min-width: 300px;
+    margin-bottom: 1.5rem;
+}
+
 /* Personalización de cards */
 .card {
     padding: 2rem 1.5rem;
@@ -254,6 +279,15 @@ body {
 @media (max-width: 768px) {
     .navbar-nav {
         text-align: center;
+    }
+
+    .cards-flexbox {
+        flex-direction: column;
+    }
+    
+    .card-flex {
+        flex: 1;
+        min-width: 100%;
     }
 
     .card {
